@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="20dp"
+    android:background="@drawable/dialog_background">
+
+    <TextView
+        android:id="@+id/textViewDialogTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Tasks"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp" />
+
+    <TextView
+        android:id="@+id/textViewNoNewTasks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No new tasks"
+        android:textSize="16sp"
+        android:layout_below="@id/textViewDialogTitle"
+        android:layout_centerHorizontal="true"
+        android:textColor="#FF5722"
+        android:layout_marginBottom="20dp"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/buttonViewTasks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewNoNewTasks"
+        android:layout_centerHorizontal="true"
+        android:text="View All Tasks"
+        android:layout_gravity="center"
+        android:textColor="@color/colorPrimary"
+         />
+
+</RelativeLayout>
