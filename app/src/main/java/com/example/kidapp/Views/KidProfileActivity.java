@@ -1,13 +1,20 @@
 package com.example.kidapp.Views;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import com.bumptech.glide.Glide;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.kidapp.Models.Kid;
 import com.example.kidapp.R;
 import com.example.kidapp.Repositories.DataManager;
 import com.google.android.material.textview.MaterialTextView;
@@ -21,26 +28,23 @@ public class KidProfileActivity extends AppCompatActivity {
     private MaterialTextView buttonLogout;
     private View bellIcon;
     private TextView badgeCount;
-    private DataManager dataManager;
+    private DataManager dataManager= DataManager.getInstance();
     private String phoneNumber;
+    private Kid kid;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kid_profile);
+        findViewsById();
+        kid = dataManager.getKid();
+        initViews();
 
-        profileImageView = findViewById(R.id.profile_image);
-        nameTextView = findViewById(R.id.name_text);
-        dobTextView = findViewById(R.id.dob_text);
-        phoneNumberTextView = findViewById(R.id.phone_number_text);
-        buttonLogout = findViewById(R.id.buttonLogout);
-        bellIcon = findViewById(R.id.notificationBell);
-        badgeCount = findViewById(R.id.badgeCount);
+        badgeCount.setVisibility(View.GONE);
 
-        dataManager = new DataManager();
-        phoneNumber = getIntent().getStringExtra("phoneNumber");
 
-        //fetchChildProfile();
 
         buttonLogout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,6 +61,28 @@ public class KidProfileActivity extends AppCompatActivity {
         });
 
         updateBadgeCount(2); // Example: Update badge count to 2 for demonstration
+    }
+
+    @SuppressLint("SetTextI18n")
+    private void initViews() {
+        Intent intent = new Intent();
+        phoneNumberTextView.setText(kid.getPhone());
+        nameTextView.setText(kid.getfName() + " " + kid.getlName());
+        dobTextView.setText(kid.getBirthDate().toString());
+
+        Glide.with(this).load(kid.getProfilePhoto()).placeholder(R.drawable.ic_profile_placeholder).into(profileImageView);
+        //Glide.with(this).load("https://firebasestorage.googleapis.com/v0/b/kinderkit-68d4c.appspot.com/o/Ariel.jpg?alt=media&token=3a1bc07a-b643-4a44-9769-b62b2eb7001b").into(profileImageView);
+
+    }
+
+    private void findViewsById() {
+        profileImageView = findViewById(R.id.profile_image);
+        nameTextView = findViewById(R.id.name_text);
+        dobTextView = findViewById(R.id.dob_text);
+        phoneNumberTextView = findViewById(R.id.phone_number_text);
+        buttonLogout = findViewById(R.id.buttonLogout);
+        bellIcon = findViewById(R.id.notificationBell);
+        badgeCount = findViewById(R.id.badgeCount);
     }
 
     private void updateBadgeCount(int count) {

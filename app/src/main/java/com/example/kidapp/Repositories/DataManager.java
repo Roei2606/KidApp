@@ -25,12 +25,22 @@ public class DataManager {
     private TaskService taskService;
     private UserService userService;
     private final String superapp = "2024b.yarden.cherry";
+    private static DataManager instance;
+    private Kid  kid;
 
-    public DataManager() {
+    public static DataManager getInstance() {
+        if (instance == null) {
+            instance = new DataManager();
+        }
+        return instance;
+    }
+
+    private DataManager() {
         this.database = RetrofitClient.getInstance();
         this.kidService = database.getClient().create(KidService.class);
         this.taskService = database.getClient().create(TaskService.class);
         this.userService = database.getClient().create(UserService.class);
+        this.kid = new Kid();
     }
 
     public void loginUser(String email, OnLoginListener listener) {
@@ -61,7 +71,8 @@ public class DataManager {
                     Log.d("object", new Gson().toJson(object));
                     if (object.getCreatedBy().getUserId().getEmail().equals(user.getUserId().getEmail())) {
                         if (object.getType().equals(Kid.class.getSimpleName())) {
-                            Kid kid = new Gson().fromJson(new Gson().toJson(object.getObjectDetails()), Kid.class);
+                            kid = new Gson().fromJson(new Gson().toJson(object.getObjectDetails()), Kid.class);
+                            Log.d("kid", new Gson().toJson(kid));
                             listener.onSuccess(kid);
                         }
                     }
@@ -111,6 +122,15 @@ public class DataManager {
 //            }
 //        });
 //    }
+
+    public Kid getKid() {
+        return kid;
+    }
+
+    public DataManager setKid(Kid kid) {
+        this.kid = kid;
+        return this;
+    }
 
     private String getErrorMessage(Response<?> response) {
         try {

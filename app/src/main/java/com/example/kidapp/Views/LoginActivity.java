@@ -21,7 +21,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText editTextPhoneNumber;
     private MaterialButton buttonLogin;
     private ProgressDialog progressDialog;
-    private DataManager dataManager;
+    private DataManager dataManager= DataManager.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +30,6 @@ public class LoginActivity extends AppCompatActivity {
 
         editTextPhoneNumber = findViewById(R.id.editTextPhoneNumber);
         buttonLogin = findViewById(R.id.buttonLogin);
-        dataManager = new DataManager();
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("Login");
@@ -51,6 +50,8 @@ public class LoginActivity extends AppCompatActivity {
             public void onSuccess(Kid kid) {
                 progressDialog.dismiss();
                 Toast.makeText(LoginActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent();
+                intent.putExtra("phoneNumber", kid.getPhone());
                 startActivity(new Intent(LoginActivity.this, KidProfileActivity.class));
                 finish();
             }

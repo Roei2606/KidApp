@@ -13,5 +13,7 @@
         <domain includeSubdomains="true">172.20.10.3</domain>
         <domain includeSubdomains="true">10.140.3.31</domain>
         <domain includeSubdomains="true">172.20.10.4</domain>
+        <domain includeSubdomains="true">192.168.1.140</domain>
+        <domain includeSubdomains="true">192.168.63.230</domain>
     </domain-config>
 </network-security-config>
