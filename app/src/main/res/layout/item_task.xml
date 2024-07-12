@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
@@ -36,6 +37,7 @@
                 android:textColor="@color/taskDescriptionColor"
                 android:fontFamily="sans-serif-medium"
                 android:layout_marginBottom="8dp" />
+
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/task_date"
                 android:layout_width="match_parent"
@@ -46,15 +48,45 @@
                 android:textColor="@color/black"
                 android:fontFamily="sans-serif-medium"
                 android:layout_marginBottom="8dp" />
-
-            <CheckBox
-                android:id="@+id/task_checkbox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Completed"
-                android:textSize="16sp"
-                android:textColor="@color/taskCheckboxTextColor"
-                android:buttonTint="@color/taskCheckboxColor" />
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="end">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/approve_button"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_approve"
+                android:contentDescription="Approve"
+                android:scaleType="centerInside"
+                android:focusable="false"
+                android:clickable="false" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/deny_button"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="8dp"
+                android:src="@drawable/ic_deny"
+                android:contentDescription="Deny"
+                android:scaleType="centerInside"
+                android:focusable="false"
+                android:clickable="false" />
+        </LinearLayout>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/approval_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Task Status"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/taskDescriptionColor"
+            android:fontFamily="sans-serif-medium"
+            android:visibility="gone" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

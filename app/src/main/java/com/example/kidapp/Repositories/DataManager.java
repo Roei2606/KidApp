@@ -5,6 +5,7 @@ import androidx.annotation.NonNull;
 
 import com.example.kidapp.ExternalModels.boundaries.ObjectBoundary;
 import com.example.kidapp.ExternalModels.boundaries.UserBoundary;
+import com.example.kidapp.Models.BasicUser;
 import com.example.kidapp.Models.Kid;
 import com.example.kidapp.ExternalModels.boundaries.MiniAppCommandBoundary;
 import com.example.kidapp.Models.Task;
@@ -61,7 +62,29 @@ public class DataManager {
             }
         });
     }
-
+//    public void updateObject(ObjectBoundary objectBoundary, DataManager.OnUserUpdateListener listenerUpdate, BasicUser user) {
+//        if (user.getClass().getSimpleName().equals("Parent"))
+//            Log.d("Da", "Updating object with id: " + objectBoundary.toString());
+//        userService.updateObject(objectBoundary.getObjectId().getId(), objectBoundary.getObjectId().getSuperapp(), objectBoundary.getObjectId().getSuperapp(), objectBoundary.getCreatedBy().getUserId().getEmail(), objectBoundary)
+//                .enqueue(new Callback<Void>() {
+//                    @Override
+//                    public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
+//                        if (response.isSuccessful()) {
+//                            listenerUpdate.onSuccess();
+//                        } else {
+//                            logError(response, "updateUser");
+//                            listenerUpdate.onFailure(new Exception("Failed to update user: " + getErrorMessage(response)));
+//                            Log.d("DataManager", "Error in updateObject: " + getErrorMessage(response));
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
+//                        listenerUpdate.onFailure(new Exception("Failed to update user: " + t.getMessage()));
+//                        Log.d("12w2", "Error in updateObject: " + t.getMessage());
+//                    }
+//                });
+//    }
     private void fetchUserPhone(UserBoundary user, OnLoginListener listener) {
         kidService.getObjectById(user.getUsername(), superapp, user.getUserId().getSuperapp(), user.getUserId().getEmail()).enqueue(new Callback<ObjectBoundary>() {
             @Override
@@ -157,6 +180,11 @@ public class DataManager {
 
     public interface OnLoginListener {
         void onSuccess(Kid kid);
+
+        void onFailure(Exception exception);
+    }
+    public interface OnUserUpdateListener {
+        void onSuccess();
 
         void onFailure(Exception exception);
     }

@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -6,15 +5,19 @@
     tools:context=".Views.TaskListActivity"
     android:background="#E1F5FE">
 
-    <include
-        android:id="@+id/notificationBell"
-        layout="@layout/notification_bell"
+    <TextView
+        android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
+        android:text="My Tasks"
+        android:textSize="30sp"
+        android:padding="20dp"
+        android:textColor="#FF5722"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp" />
+        android:layout_centerHorizontal="true"
+        android:textStyle="bold"
+        android:fontFamily="sans-serif-medium"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/textViewNoTasks"
@@ -32,5 +35,4 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:listitem="@layout/item_task" />
-
 </RelativeLayout>

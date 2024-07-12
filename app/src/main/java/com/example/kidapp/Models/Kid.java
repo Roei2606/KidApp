@@ -179,6 +179,7 @@ public class Kid  extends BasicUser {
         return this;
     }
 
+
     public Map<String, String> getPhotosUriMap() {
         Map<String, String> map = new HashMap<>();
         for (MyPhoto photo : this.getPhotosUri()) {
@@ -312,5 +313,9 @@ public class Kid  extends BasicUser {
     @Override
     public String getPassword() {
         return super.uid;
+    }
+
+    public void setCurrnetEvent(KidEvent event, int position) {
+        this.events.set(position, event);
     }
 }
