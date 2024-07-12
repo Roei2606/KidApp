@@ -63,7 +63,7 @@ public class KidProfileActivity extends AppCompatActivity {
         updateBadgeCount(2); // Example: Update badge count to 2 for demonstration
     }
 
-    @SuppressLint("SetTextI18n")
+
     private void initViews() {
         Intent intent = new Intent();
         phoneNumberTextView.setText(kid.getPhone());

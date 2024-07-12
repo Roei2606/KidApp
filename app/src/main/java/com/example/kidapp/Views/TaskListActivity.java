@@ -13,23 +13,33 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.kidapp.Adapters.TaskAdapter;
+import com.example.kidapp.Models.Kid;
 import com.example.kidapp.R;
+import com.example.kidapp.Repositories.DataManager;
 
 public class TaskListActivity extends AppCompatActivity {
 
     private RecyclerView recyclerViewTasks;
     private TextView badgeCount;
     private ImageView bellIcon;
+    private DataManager dataManager= DataManager.getInstance();
+    private Kid kid;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_list);
-
+        kid = dataManager.getKid();
         recyclerViewTasks = findViewById(R.id.recyclerViewTasks);
+        recyclerViewTasks.setLayoutManager(new LinearLayoutManager(this));
+        TaskAdapter taskAdapter = new TaskAdapter(kid.getEvents());
         badgeCount = findViewById(R.id.badgeCount);
+        recyclerViewTasks.setAdapter(taskAdapter);
         bellIcon = findViewById(R.id.bellIcon);
         updateBadgeCount(2);
         bellIcon.setOnClickListener(new View.OnClickListener() {

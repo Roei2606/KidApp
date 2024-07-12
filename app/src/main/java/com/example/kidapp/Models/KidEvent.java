@@ -5,7 +5,20 @@ public class KidEvent {
     private MyDate eventDate;
     private String eId;
 
+    private Boolean isApproved;
+
+
     public KidEvent() {
+        isApproved=null;
+    }
+
+    public Boolean getApproved() {
+        return isApproved;
+    }
+
+    public KidEvent setApproved(Boolean approved) {
+        isApproved = approved;
+        return this;
     }
 
     public String getEventTitle() {
