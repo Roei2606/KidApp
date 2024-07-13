@@ -26,5 +26,8 @@ public interface UserService {
                             @Query("userSuperapp") String userSuperapp,
                             @Query("userEmail") String userEmail,
                             @Body ObjectBoundary objectBoundary);
+
+    @PUT("/superapp/users/{superapp}/{email}")
+    Call<Void> updateUser(@Path("superapp") String superapp, @Path("email") String email, @Body UserBoundary update);
 }
 

@@ -230,8 +230,8 @@ public class Kid  extends BasicUser {
                 ", profilePhotoUri=" + profilePhoto +
                 ", ImmunizationRecords=" + ImmunizationRecords +
                 ", events=" + events +
-                ", kId='" + super.uid + '\'' +
-                ", kidMail='" + mail + '\'' +
+                ", uid='" + super.uid + '\'' +
+                ", mail='" + mail + '\'' +
                 ", phone='" + phone + '\'' +
                 '}';
     }
@@ -292,8 +292,8 @@ public class Kid  extends BasicUser {
         details.put("profilePhoto", this.getProfilePhoto());
         details.put("fName", this.getfName());
         details.put("lName", this.getlName());
-        details.put("kId", this.getUid());
-        details.put("kidMail", this.getMail());
+        details.put("uid", this.getUid());
+        details.put("mail", this.getMail());
         details.put("birthDate", this.getBirthDate());
         details.put("phone", this.getPhone());
         objectBoundary.setObjectDetails(details);
@@ -307,7 +307,7 @@ public class Kid  extends BasicUser {
 
     @Override
     public String getMail() {
-        return super.mail;
+        return this.getPhone()+"@gmail.com";
     }
 
     @Override

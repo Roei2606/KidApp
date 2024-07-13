@@ -1,11 +1,10 @@
 package com.example.kidapp.Views;
 
-import android.app.Dialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -45,6 +44,19 @@ public class TaskListActivity extends AppCompatActivity {
             // Log the updated event to verify if the approval status is being updated correctly
             KidEvent updatedEvent = kid.getEvents().get(position);
             Log.d("TaskListActivity", "Updated Event: " + updatedEvent.getEventTitle() + " isApproved: " + updatedEvent.getApproved());
+            dataManager.updateKidObject(kid, new DataManager.OnUserUpdateListener() {
+                @Override
+                public void onSuccess() {
+                    Log.d("TaskListActivity", "Kid object updated successfully");
+                    Toast.makeText(TaskListActivity.this, "Kid object updated successfully", Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onFailure(Exception exception) {
+                    Log.d("TaskListActivity", "Error in updateKidObject: " + exception.getMessage());
+                    Toast.makeText(TaskListActivity.this, "Error in updateKidObject: " + exception.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
         });
     }
 }

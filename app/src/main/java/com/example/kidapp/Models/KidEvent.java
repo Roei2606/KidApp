@@ -50,6 +50,8 @@ public class KidEvent {
         return "KidEvent{" +
                 "eventTitle='" + eventTitle + '\'' +
                 ", eventDate=" + eventDate +
+                ", eId='" + eId + '\'' +
+                ", isApproved=" + isApproved +
                 '}';
     }
 

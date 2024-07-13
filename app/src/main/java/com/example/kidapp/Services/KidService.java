@@ -10,7 +10,7 @@ import retrofit2.http.Query;
 public interface KidService {
     @GET("/superapp/objects/{superapp}/{id}")
     Call<ObjectBoundary> getObjectById(@Path("id") String id,
-                                              @Path("superapp") String superapp,
-                                              @Query("userSuperapp") String userSuperapp,
-                                              @Query("userEmail") String userEmail);
+                                       @Path("superapp") String superapp,
+                                       @Query("userSuperapp") String userSuperapp,
+                                       @Query("userEmail") String userEmail);
 }
