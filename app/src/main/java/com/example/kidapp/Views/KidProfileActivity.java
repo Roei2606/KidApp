@@ -27,6 +27,7 @@ public class KidProfileActivity extends AppCompatActivity {
     private MaterialTextView phoneNumberTextView;
     private MaterialTextView buttonLogout;
     private View bellIcon;
+    private View refreshButton;
     private TextView badgeCount;
     private DataManager dataManager= DataManager.getInstance();
     private String phoneNumber;
@@ -41,11 +42,8 @@ public class KidProfileActivity extends AppCompatActivity {
         findViewsById();
         kid = dataManager.getKid();
         initViews();
-
         badgeCount.setVisibility(View.GONE);
         updateBadgeCount(countUndoneTasks());
-
-
         buttonLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,25 +58,25 @@ public class KidProfileActivity extends AppCompatActivity {
             }
         });
 
-         // Example: Update badge count to 2 for demonstration
+        refreshButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                refreshData();
+            }
+        });
     }
     @Override
     protected void onResume() {
         super.onResume();
-        // Update badge count when returning to this activity
         updateBadgeCount(countUndoneTasks());
     }
-
 
     private void initViews() {
         Intent intent = new Intent();
         phoneNumberTextView.setText(kid.getPhone());
         nameTextView.setText(kid.getfName() + " " + kid.getlName());
         dobTextView.setText(kid.getBirthDate().toString());
-
         Glide.with(this).load(kid.getProfilePhoto()).placeholder(R.drawable.ic_profile_placeholder).into(profileImageView);
-        //Glide.with(this).load("https://firebasestorage.googleapis.com/v0/b/kinderkit-68d4c.appspot.com/o/Ariel.jpg?alt=media&token=3a1bc07a-b643-4a44-9769-b62b2eb7001b").into(profileImageView);
-
     }
     private int countUndoneTasks(){
         int count = 0;
@@ -99,18 +97,6 @@ public class KidProfileActivity extends AppCompatActivity {
         }
     }
 
-    private void findViewsById() {
-        profileImageView = findViewById(R.id.profile_image);
-        nameTextView = findViewById(R.id.name_text);
-        dobTextView = findViewById(R.id.dob_text);
-        phoneNumberTextView = findViewById(R.id.phone_number_text);
-        buttonLogout = findViewById(R.id.buttonLogout);
-        bellIcon = findViewById(R.id.notificationBell);
-        badgeCount = findViewById(R.id.badgeCount);
-    }
-
-
-
     private void showNewTasksDialog() {
         final Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.dialog_new_tasks);
@@ -121,8 +107,6 @@ public class KidProfileActivity extends AppCompatActivity {
         }else{
             textViewNoNewTasks.setText("You have " + countUndoneTasks() + " uncompleted tasks");
         }
-
-
         TextView buttonViewTasks = dialog.findViewById(R.id.buttonViewTasks);
         buttonViewTasks.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,36 +116,38 @@ public class KidProfileActivity extends AppCompatActivity {
                 dialog.dismiss();
             }
         });
-
         dialog.show();
     }
 
-//    private void fetchChildProfile() {
-//        dataManager.fetchChildProfile(phoneNumber, new DataManager.OnChildProfileFetchedListener() {
-//            @Override
-//            public void onChildProfileFetched(Kid kid) {
-//                nameTextView.setText(kid.getfName() + " " + kid.getlName());
-//                dobTextView.setText(kid.getBirthDate().toString());
-//                phoneNumberTextView.setText(kid.getPhoneNumber());
-//                Glide.with(KidProfileActivity.this)
-//                        .load(kid.getProfilePhotoUri().toString())
-//                        .placeholder(R.drawable.ic_profile_placeholder) // Add a placeholder if needed
-//                        .circleCrop() // To make the image circular
-//                        .into(profileImageView);
-//            }
-//
-//            @Override
-//            public void onFailure(Exception exception) {
-//                Toast.makeText(KidProfileActivity.this, exception.getMessage(), Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//    }
-
     private void logout() {
-        // Handle logout logic here (e.g., clearing shared preferences or any stored user data)
         Intent intent = new Intent(KidProfileActivity.this, LoginActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
         finish();
+    }
+    private void refreshData() {
+        dataManager.reloadKidData(kid.getMail(), new DataManager.OnLoginListener() {
+            @Override
+            public void onSuccess(Kid kid) {
+                KidProfileActivity.this.kid = kid;
+                initViews();
+                updateBadgeCount(countUndoneTasks());
+            }
+
+            @Override
+            public void onFailure(Exception exception) {
+                Log.e("KidProfileActivity", "Failed to refresh data: " + exception.getMessage());
+            }
+        });
+    }
+    private void findViewsById() {
+        profileImageView = findViewById(R.id.profile_image);
+        nameTextView = findViewById(R.id.name_text);
+        dobTextView = findViewById(R.id.dob_text);
+        phoneNumberTextView = findViewById(R.id.phone_number_text);
+        buttonLogout = findViewById(R.id.buttonLogout);
+        bellIcon = findViewById(R.id.notificationBell);
+        badgeCount = findViewById(R.id.badgeCount);
+        refreshButton = findViewById(R.id.refresh_button);
     }
 }

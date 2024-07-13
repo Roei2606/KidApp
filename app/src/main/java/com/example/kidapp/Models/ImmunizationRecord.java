@@ -105,20 +105,4 @@ public class ImmunizationRecord {
         this.creatorName = creatorName;
         return this;
     }
-
-
-
-
-
-//    @Override
-//    public String toString() {
-//        return "ImmunizationRecord{" +
-//                "vaccineName='" + vaccineName + '\'' +
-//                ", doseNumber=" + doseNumber +
-//                ", vdate=" + vdate.toString() +
-//                ", vaccinatorName='" + vaccinatorName + '\'' +
-//                ", HMOName='" + HMOName + '\'' +
-//                ", creatorName='" + creatorName + '\'' +
-//                '}';
-//    }
 }

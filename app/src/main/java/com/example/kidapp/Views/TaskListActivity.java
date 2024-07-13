@@ -21,7 +21,6 @@ public class TaskListActivity extends AppCompatActivity {
 
     private RecyclerView recyclerViewTasks;
     private TextView textViewNoTasks;
-
     private DataManager dataManager = DataManager.getInstance();
     private Kid kid;
 
@@ -41,7 +40,6 @@ public class TaskListActivity extends AppCompatActivity {
         taskAdapter.setUpdateTaskCallBack((event, position) -> {
             kid.setCurrnetEvent(event, position);
             taskAdapter.notifyItemChanged(position);
-            // Log the updated event to verify if the approval status is being updated correctly
             KidEvent updatedEvent = kid.getEvents().get(position);
             Log.d("TaskListActivity", "Updated Event: " + updatedEvent.getEventTitle() + " isApproved: " + updatedEvent.getApproved());
             dataManager.updateKidObject(kid, new DataManager.OnUserUpdateListener() {
@@ -50,7 +48,6 @@ public class TaskListActivity extends AppCompatActivity {
                     Log.d("TaskListActivity", "Kid object updated successfully");
                     Toast.makeText(TaskListActivity.this, "Kid object updated successfully", Toast.LENGTH_SHORT).show();
                 }
-
                 @Override
                 public void onFailure(Exception exception) {
                     Log.d("TaskListActivity", "Error in updateKidObject: " + exception.getMessage());
