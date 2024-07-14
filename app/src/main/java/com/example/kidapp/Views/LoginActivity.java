@@ -45,24 +45,24 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
     private void login(String phoneNumber) {
-        dataManager.loginUser(phoneNumber, new DataManager.OnLoginListener() {
-            @Override
-            public void onSuccess(Kid kid) {
-                progressDialog.dismiss();
-                Toast.makeText(LoginActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent();
-                intent.putExtra("phoneNumber", kid.getPhone());
-                startActivity(new Intent(LoginActivity.this, KidProfileActivity.class));
-                finish();
-            }
-            @Override
-            public void onFailure(Exception exception) {
-                progressDialog.dismiss();
-                Toast.makeText(LoginActivity.this, "Please enter your phone number", Toast.LENGTH_SHORT).show();
-                Toast.makeText(LoginActivity.this, exception.getMessage(), Toast.LENGTH_SHORT).show();
-                Log.e("Login Error", exception.getMessage());
-            }
-        });
+            dataManager.loginUser(phoneNumber, new DataManager.OnLoginListener() {
+                @Override
+                public void onSuccess(Kid kid) {
+                    progressDialog.dismiss();
+                    Toast.makeText(LoginActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent();
+                    intent.putExtra("phoneNumber", kid.getPhone());
+                    startActivity(new Intent(LoginActivity.this, KidProfileActivity.class));
+                    finish();
+                }
+                @Override
+                public void onFailure(Exception exception) {
+                    progressDialog.dismiss();
+                    Toast.makeText(LoginActivity.this, "Phone Number does not Exist", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, exception.getMessage(), Toast.LENGTH_SHORT).show();
+                    Log.e("Login Error", exception.getMessage());
+                }
+            });
     }
 
 }
