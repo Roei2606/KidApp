@@ -10,7 +10,8 @@ KidApp is a mobile application designed for kids, connected to the KinderKid app
 6. [Usage](#usage)
 7. [API Integration](#API-Integration)
 8. [Permissions](#Permissions)
-9. [License](#license)
+9. [Screenshots](#Screenshots)
+10. [Video Demonstration](#Video-Demonstration)
 
 ## Introduction
 
@@ -112,6 +113,11 @@ Here are some screenshots and mockups of the application:
 <img width="297" alt="Screenshot 2024-07-14 at 22 51 30" src="https://github.com/user-attachments/assets/3113c30e-fb1c-4668-9756-1b91bd7bb732"> <img width="297" alt="Screenshot 2024-07-14 at 22 51 42" src="https://github.com/user-attachments/assets/7b31ad2c-621e-42c5-ad3f-88c2cc4501c1">
 <img width="297" alt="Screenshot 2024-07-14 at 22 50 19" src="https://github.com/user-attachments/assets/96675857-a1d3-429e-9d1d-d8668c8e9da5"> <img width="297" alt="Screenshot 2024-07-14 at 22 50 12" src="https://github.com/user-attachments/assets/f94b1c10-f645-4f7f-b73f-de897a9f06bb">
 <img width="297" alt="Screenshot 2024-07-14 at 22 50 07" src="https://github.com/user-attachments/assets/8751356b-19c0-4137-a59d-2a161019d8b5"> <img width="297" alt="Screenshot 2024-07-14 at 22 49 59" src="https://github.com/user-attachments/assets/9076b595-fdb9-41b1-8eed-8fa50532b5e4">
+
+## Video Demonstration
+
+https://github.com/user-attachments/assets/9362f708-fca6-4964-af83-b2941211471e
+
 
 
 
