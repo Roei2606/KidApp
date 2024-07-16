@@ -105,8 +105,13 @@ public interface UserService {
 <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 ```
 
+## Screenshots
+
+Here are some screenshots and mockups of the application:
+
+<img width="297" alt="Screenshot 2024-07-14 at 22 51 30" src="https://github.com/user-attachments/assets/3113c30e-fb1c-4668-9756-1b91bd7bb732"> <img width="297" alt="Screenshot 2024-07-14 at 22 51 42" src="https://github.com/user-attachments/assets/7b31ad2c-621e-42c5-ad3f-88c2cc4501c1">
 
 
-׳׳׳
-׳׳׳׳׳׳׳
+
+
 
