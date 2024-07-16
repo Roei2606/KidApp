@@ -26,6 +26,7 @@ KidApp is developed to provide children with an engaging and secure platform to 
 
 1. Clone the repository:
 ```bash
+git clone https://github.com/Roei2606/KidApp.git
 ```
 2. Open the project in Android Studio.
 3. Ensure you have the necessary SDKs and dependencies installed.
