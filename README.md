@@ -8,7 +8,7 @@ KidApp is a mobile application designed for kids, connected to the KinderKid app
 3. [Installation](#Installation)
 4. [Configuration](#Configuration)
 6. [Usage](#usage)
-7. [API Integration](#API Integration)
+7. [API_Integration](#API_Integration)
 8. [Permissions](#Permissions)
 9. [License](#license)
 
